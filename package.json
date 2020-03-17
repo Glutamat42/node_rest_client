@@ -1,11 +1,11 @@
 {
   "name": "rest-client",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple rest client",
-  "main": "dist/index.js",
+  "main": "dist/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./node_modules/.bin/babel src --out-file dist/index.js"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -18,9 +18,12 @@
   },
   "homepage": "https://github.com/Glutamat42/node_rest_client#readme",
   "devDependencies": {
+    "babel-loader": "^8.0.6",
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.6",
     "@babel/preset-env": "^7.8.6",
-    "@babel/preset-react": "^7.8.3"
+    "@babel/preset-react": "^7.8.3",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11"
   }
 }
