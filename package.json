@@ -1,6 +1,6 @@
 {
   "name": "rest-client",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A simple rest client",
   "main": "dist/main.js",
   "scripts": {
