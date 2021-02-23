@@ -3,7 +3,7 @@ import fetch from './http_backend/fetch'
 export default async function ({url, method = 'GET', headers, data, params}, {requestInterceptors = [], responseInterceptors = [], errorInterceptors = []}) {
     // TODO validate params
 
-    const requestParameter = doRequestInterceptors(
+    const requestParameter = await doRequestInterceptors(
         requestInterceptors,
         {
             headers: headers,
@@ -26,15 +26,15 @@ export default async function ({url, method = 'GET', headers, data, params}, {re
 }
 
 
-function doRequestInterceptors(requestInterceptors, {headers, url, method, data, params}) {
+async function doRequestInterceptors(requestInterceptors, {headers, url, method, data, params}) {
     let _headers = headers;
     let _url = url;
     let _method = method;
     let _data = data;
     let _params = params;
 
-    requestInterceptors.forEach(interceptor => {
-        const options = interceptor({
+    for (const interceptor of requestInterceptors) {
+        const options = await interceptor({
             data: _data,
             params: _params,
             headers: _headers,
@@ -46,7 +46,7 @@ function doRequestInterceptors(requestInterceptors, {headers, url, method, data,
         _method = options.method ?? _method;
         _data = options.data ?? _data;
         _params = options.params ?? _params;
-    });
+    }
 
     return {
         headers: _headers,
